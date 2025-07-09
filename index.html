@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Un Regalo Para el amor de mi vida 🎁</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffdce5, #ffe6f0, #ffecf5);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 60px;
+      color: #d63384;
+      overflow: hidden;
+    }
 
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 1.6em;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .heart {
+      font-size: 4em;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    .surprise-btn {
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 1.3em;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .surprise-btn:hover {
+      background-color: #ff1493;
+    }
+
+    .hidden-message {
+      display: none;
+      margin-top: 30px;
+      font-size: 1.5em;
+      color: #c2185b;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Floating hearts */
+    .floating-heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_Heart.svg') no-repeat center/contain;
+      animation: float 10s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart">💖</div>
+  <h1>Para ti, Jhorgely</h1>
+  <p>
+    Este es mi regalo para ti, Jhorgely, por ser una persona tan linda, adorable y maravillosa.
+    <br><br>
+    Te amo. 💘
+  </p>
+
+  <button class="surprise-btn" onclick="showSurprise()">Haz clic para tu sorpresa 💝</button>
+  <div class="hidden-message" id="surprise">
+    🌸 Siempre te llevaré en mi corazón, mi dulce Jhorgely. Eres magia pura. 🌸
+  </div>
+
+  <!-- Floating hearts -->
+  <script>
+    function showSurprise() {
+      document.getElementById('surprise').style.display = 'block';
+    }
+
+    // Create floating hearts
+    for (let i = 0; i < 20; i++) {
+      let heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 10 + 's';
+      heart.style.width = heart.style.height = (20 + Math.random() * 20) + 'px';
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
