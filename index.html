@@ -2,10 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Un Regalo Para el amor de mi vida 🎁</title>
+  <title>Un Regalo Para el Amor de Mi Vida 🎁</title>
   <style>
     body {
-      background: linear-gradient(135deg, #ffdce5, #ffe6f0, #ffecf5);
+      background-image: url('https://i.pinimg.com/originals/e6/2e/bb/e62ebbdf6c1c2c5ff84aab54c982f0cb.jpg');
+      background-size: cover;
+      background-position: center;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       text-align: center;
       padding: 60px;
@@ -16,12 +18,16 @@
     h1 {
       font-size: 3em;
       margin-bottom: 0.5em;
+      text-shadow: 2px 2px #fff;
     }
 
     p {
       font-size: 1.6em;
       max-width: 700px;
       margin: 0 auto;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      border-radius: 20px;
     }
 
     .heart {
@@ -58,6 +64,9 @@
       font-size: 1.5em;
       color: #c2185b;
       animation: fadeIn 1s forwards;
+      background: rgba(255, 240, 245, 0.85);
+      padding: 20px;
+      border-radius: 15px;
     }
 
     @keyframes fadeIn {
@@ -65,7 +74,6 @@
       to { opacity: 1; }
     }
 
-    /* Floating hearts */
     .floating-heart {
       position: absolute;
       width: 30px;
@@ -73,6 +81,7 @@
       background: url('https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_Heart.svg') no-repeat center/contain;
       animation: float 10s linear infinite;
       opacity: 0.7;
+      z-index: 1;
     }
 
     @keyframes float {
@@ -104,14 +113,13 @@
     🌸 Siempre te llevaré en mi corazón, mi dulce Jhorgely. Eres magia pura. 🌸
   </div>
 
-  <!-- Floating hearts -->
   <script>
     function showSurprise() {
       document.getElementById('surprise').style.display = 'block';
     }
 
-    // Create floating hearts
-    for (let i = 0; i < 20; i++) {
+    // Floating hearts animation
+    for (let i = 0; i < 25; i++) {
       let heart = document.createElement('div');
       heart.classList.add('floating-heart');
       heart.style.left = Math.random() * 100 + 'vw';
