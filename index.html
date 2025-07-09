@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Un Regalo Para el Amor de Mi Vida 🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
   <style>
     body {
       background-image: url('https://i.imgur.com/Q5Ny5Ip.jpeg');
       background-size: cover;
       background-position: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Patrick Hand', cursive;
       text-align: center;
       padding: 60px;
       color: #d63384;
@@ -51,11 +52,13 @@
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
+      transition: transform 0.2s ease;
+      animation: bounce 2s infinite;
     }
 
-    .surprise-btn:hover {
-      background-color: #ff1493;
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .hidden-message {
@@ -74,28 +77,48 @@
       to { opacity: 1; }
     }
 
-    .floating-heart {
+    .floating-heart, .falling-flower {
       position: absolute;
       width: 30px;
       height: 30px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_Heart.svg') no-repeat center/contain;
       animation: float 10s linear infinite;
-      opacity: 0.7;
+      opacity: 0.8;
       z-index: 1;
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Glitter effect */
+    .glitter {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 10px pink;
+      border-radius: 50%;
+      animation: glitterFall 5s linear infinite;
+    }
+
+    @keyframes glitterFall {
+      0% { transform: translateY(-10px) scale(1); opacity: 1; }
+      100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    }
+
+    .hello-kitty {
+      width: 100px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      animation: floatKitty 6s ease-in-out infinite;
+    }
+
+    @keyframes floatKitty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
   </style>
 </head>
@@ -113,19 +136,47 @@
     🌸 Siempre te llevaré en mi corazón, mi dulce Jhorgely. Eres magia pura. 🌸
   </div>
 
+  <!-- Hello Kitty character -->
+  <img src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png" class="hello-kitty" alt="Hello Kitty">
+
+  <!-- Audio -->
+  <audio id="kittySound" src="https://www.myinstants.com/media/sounds/hello-kitty.mp3"></audio>
+
   <script>
     function showSurprise() {
       document.getElementById('surprise').style.display = 'block';
+      document.getElementById('kittySound').play();
+      // spawn flowers
+      for (let i = 0; i < 20; i++) {
+        let flower = document.createElement('img');
+        flower.src = 'https://em-content.zobj.net/thumbs/120/apple/325/cherry-blossom_1f338.png';
+        flower.className = 'falling-flower';
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.top = '-40px';
+        flower.style.animationDuration = (5 + Math.random() * 5) + 's';
+        flower.style.width = flower.style.height = (20 + Math.random() * 20) + 'px';
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 10000);
+      }
     }
 
-    // Floating hearts animation
-    for (let i = 0; i < 25; i++) {
+    // Floating hearts
+    for (let i = 0; i < 20; i++) {
       let heart = document.createElement('div');
       heart.classList.add('floating-heart');
       heart.style.left = Math.random() * 100 + 'vw';
       heart.style.animationDelay = Math.random() * 10 + 's';
-      heart.style.width = heart.style.height = (20 + Math.random() * 20) + 'px';
+      heart.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_Heart.svg')";
       document.body.appendChild(heart);
+    }
+
+    // Glitter
+    for (let i = 0; i < 50; i++) {
+      let sparkle = document.createElement('div');
+      sparkle.className = 'glitter';
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(sparkle);
     }
   </script>
 </body>
