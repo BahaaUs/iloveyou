@@ -104,6 +104,27 @@
         opacity: 0;
       }
     }
+
+    /* 💖 Floating hearts animation */
+    .floating-heart {
+      position: absolute;
+      font-size: 2em;
+      color: #ff69b4;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-150px) scale(1.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -116,6 +137,7 @@
   </p>
 
   <button class="surprise-btn" onclick="showSurprise()">Haz clic para tu sorpresa 💝</button>
+
   <div class="hidden-message" id="surprise">
     🌸 Siempre te llevaré en mi corazón, mi dulce Jhorgely. Eres magia pura. 🌸
   </div>
@@ -123,6 +145,7 @@
   <script>
     function showSurprise() {
       document.getElementById('surprise').style.display = 'block';
+      releaseHearts(); // Trigger hearts animation
     }
 
     // Glitter falling animation
@@ -134,6 +157,23 @@
       glitter.style.animationDelay = (Math.random() * 10) + 's';
       glitter.style.width = glitter.style.height = (5 + Math.random() * 5) + 'px';
       document.body.appendChild(glitter);
+    }
+
+    // 💖 Floating hearts animation
+    function releaseHearts() {
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.textContent = '💖';
+        heart.style.left = (Math.random() * 100) + 'vw';
+        heart.style.top = '60%'; // Approximate location near the button
+        document.body.appendChild(heart);
+
+        // Remove heart after animation
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
     }
   </script>
 </body>
